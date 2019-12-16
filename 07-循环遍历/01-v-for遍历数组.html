@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--遍历中没有用到下标-->
+  <ul>
+    <li v-for="item in names">{{item}}</li>
+  </ul>
+  <hr/>
+  <ul>
+    <li v-for="(item,index) in names">{{index + '.' + item}}</li>
+  </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'hello Vuejs',
+      names: ['111','222','333']
+    }
+  });
+</script>
+</body>
+</html>

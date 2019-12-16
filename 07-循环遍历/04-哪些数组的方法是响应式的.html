@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="item in letters">{{item}}</li>
+  </ul>
+  <button @click="btnClick">按钮</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'hello Vuejs',
+      letters: ['A','B','C','D']
+    },
+    methods: {
+      btnClick() {
+        //push方法可以做到响应式
+        //this.letters.push('aaa');
+
+        // 通过索引改变不能做到响应式
+        //this.letters[0] == 'bbb';
+
+        // prop()响应式 删除数组的最后一个元素
+        //this.letters.pop();
+
+        // shift() 删除数组中的第一个元素
+        //this.letters.shift();
+        // unshift() 在数组最前面添加元素
+        //this.letters.unshift('aaa','bbb');
+
+        // splice作用： 删除元素/插入元素/替换元素
+        // 删除元素 splic(start,deleteCount) 从第几个元素开始删除，第二个参数为要删除的个数
+        //this.letters.splice(1)
+        //替换/插入元素 splice(start,deleteCount,params)
+        //this.letters.splice(1,0,'x','y','z');
+        //this.letters.splice(0,2,'x','y','z');
+
+        // sort()排序
+        //this.letters.sort();
+
+        // reverse()反转
+        //this.letters.reverse();
+
+        //修改数组中的元素
+        this.letters.splice(0,1,'bbb');
+        //Vue.set(this.letters,0,'bbb');
+      }
+    }
+  });
+</script>
+</body>
+</html>
