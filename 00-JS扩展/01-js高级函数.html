@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  {{message}}
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  /*const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'hello Vuejs'
+    }
+  });*/
+
+  // 函数式编程
+  // filter/map/reduce
+  // filter 过滤
+  // 取出数组中小于100的值,再乘以2
+  const nums = [10,20,111,222,444,40,50];
+  let newNums = nums.filter(function (n) {
+    return n < 100;
+  });
+  console.log(newNums);
+  // 2.map 遍历
+  let newNums2 = newNums.map(function (n) {
+    return n * 2;
+  });
+  console.log(newNums2);
+  // 3.reduce 对数组中所有内容进行汇总
+  let total = newNums2.reduce(function (preValue,n) {
+    return preValue + n;
+  },0);
+  console.log(total);
+
+  //
+  let totalNum = nums.filter(function (n) {
+    return n < 100;
+  }).map(function (n) {
+    return n * 2;
+  }).reduce(function (value,n) {
+    return value + n;
+  },0);
+</script>
+</body>
+</html>

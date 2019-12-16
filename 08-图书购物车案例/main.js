@@ -11,11 +11,15 @@ const app = new Vue({
   },
   computed: {
     totalPrice() {
-      let totalPrice = 0;
+      /*let totalPrice = 0;
       for (book of this.books){
         totalPrice += (book.price * book.amount)
       }
-      return totalPrice;
+      return totalPrice;*/
+      // reduce写法
+      return this.books.reduce(function (preVal,book) {
+        return preVal + book.price * book.amount;
+      },0)
     }
   },
   filters: {
