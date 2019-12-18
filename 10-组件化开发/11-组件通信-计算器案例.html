@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn @add="changeNum" @decrement="changeNum"></cpn>
+  <h2>{{count}}</h2>
+</div>
+
+<template id="cpn">
+  <div>
+    <button @click="add">+</button>
+    <button @click="decrement">-</button>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const cpn = {
+    template: '#cpn',
+    data() {
+      return {num: 0}
+    },
+    methods: {
+      add() {
+        this.$emit("add",this.num++);
+      },
+      decrement() {
+        this.$emit("decrement",this.num--);
+      }
+    }
+  }
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'hello Vuejs',
+      count: 0
+    },
+    methods: {
+      changeNum(num) {
+        this.count = num
+      }
+    },
+    components: {
+      cpn
+    }
+  });
+</script>
+</body>
+</html>

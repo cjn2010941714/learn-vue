@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn :fruits="fruits" @add-count="changeTotalPrice"
+       @decrement-count="changeTotalPrice">
+
+  </cpn>
+  <p>{{totalPrice}}</p>
+</div>
+
+<template id="cpn">
+  <div>
+    <table>
+      <thead>
+      <tr>
+        <th>编号</th>
+        <th>名称</th>
+        <th>单价</th>
+        <th>数量</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(fruit,index) in fruits">
+        <td>{{fruit.id}}</td>
+        <td>{{fruit.name}}</td>
+        <td>{{fruit.price}}</td>
+        <td><button @click="decrement(index)">-</button>{{fruit.count}}<button @click="add(index)">+</button></td>
+        <td><button>删除</button></td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const cpn = {
+    template: "#cpn",
+    /*data() {
+      return {
+        fruits: [
+            {id: 1, name: '苹果', price: 3, count:1},
+            {id: 2, name: '桃子', price: 4, count:1},
+            {id: 3, name: '香蕉', price: 5, count:1},
+            {id: 4, name: '西瓜', price: 6, count:1},
+          ]
+        }
+    },*/
+    /*computed: {
+      totalPrice() {
+        return '总价：￥' + this.fruits.reduce(function (preValue,fruit) {
+          return preValue + fruit.price * fruit.count
+        },0);
+      }
+    },*/
+    props: {
+      fruits: {
+        type: Array,
+        default: []
+      }
+    },
+    methods: {
+      add(index) {
+        this.fruits[index].count++;
+        this.$emit('add-count',this.fruits)
+      },
+      decrement(index) {
+        this.fruits[index].count--;
+        this.$emit('decrement-count',this.fruits)
+      }
+    }
+  };
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: 'hello Vuejs',
+      total: 18,
+      fruits: [
+        {id: 1, name: '苹果', price: 3, count:1},
+        {id: 2, name: '桃子', price: 4, count:1},
+        {id: 3, name: '香蕉', price: 5, count:1},
+        {id: 4, name: '西瓜', price: 6, count:1},
+      ]
+    },
+    computed: {
+      totalPrice() {
+        return '总价：￥'+ this.total;
+      }
+    },
+    methods: {
+      changeTotalPrice(fruits) {
+        this.total = fruits.reduce(function (preVal,fruit) {
+          return preVal + fruit.count * fruit.price;
+        },0)
+      }
+    },
+    components: {
+      cpn
+    }
+  });
+</script>
+</body>
+</html>
