@@ -88,6 +88,8 @@ console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["b" /* height */])
 // 3,依赖css文件
 __webpack_require__(3)
 
+document.writeln("<h2>hello</h2>")
+
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
