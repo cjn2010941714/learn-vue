@@ -6,6 +6,29 @@ import {INCREMENT,DECREMENT,INCREMENTCOUNT,UPDATEINFO} from './mutations-types'
 Vue.use(Vuex)
 
 // 2.创建对象
+const moduleA = {
+  state: {
+    // modules中的state需要通过 $store.state.modules.name来调用
+    name: 'aaa'
+  },
+  mutations: {
+    // modules中的mutations,调用顺序先从store找，再到modules中找，不能与store中的mutations重名
+    updateName(state, payload) {
+      state.name = payload.name
+    }
+  },
+  actions: {},
+  getters: {
+    // modules中的getters属性可以直接通过 $store.getters 来调用
+    getFullName(state) {
+      return state.name + '11111'
+    },
+    getFullName2(state,getter) {
+      return getter.getFullName + '22222'
+    }
+  }
+}
+
 const store = new Vuex.Store({
   state: {
     counter: 100,
@@ -59,7 +82,9 @@ const store = new Vuex.Store({
       }
     }
   },
-  modules: {}
+  modules: {
+    moduleA,
+  }
 });
 
 // 3.导出对象
