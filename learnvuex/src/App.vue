@@ -5,6 +5,7 @@
     <button @click="updateName">修改名字</button>
     <h2>{{$store.getters.getFullName}}</h2>
     <h2>{{$store.getters.getFullName2}}</h2>
+    <button @click="asyncUpdateName">异步修改名字</button>
     <h2>-----------------App内容-------------------</h2>
     <h2>{{msg}}</h2>
     <h2>{{$store.state.counter}}</h2>
@@ -71,6 +72,9 @@
       },
       updateName() {
         this.$store.commit({type: 'updateName', name: 'bbb'})
+      },
+      asyncUpdateName() {
+        this.$store.dispatch('aUpdateName')
       }
     }
   }
