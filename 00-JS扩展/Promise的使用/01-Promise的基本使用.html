@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 1.使用setTimeout模拟异步操作
+    /*setTimeout(() => {
+            console.log('hello world')
+
+            setTimeout(() => {
+                console.log('hello vuejs');
+
+                setTimeout(() => {
+                    console.log('hello python')
+                },1000)
+            },1000)
+        },1000)*/
+
+    // 使用Promise
+    // 参数: 函数(resolve, reject)
+    // resolve, reject本身又是函数
+    // new Promise((resolve, reject) => {
+    //     // 第一次请求代码
+    //     setTimeout(() => {
+    //         resolve()
+    //     },1000)
+    // }).then(() => {
+    //     // 第一次拿到请求结果后的处理代码
+    //     console.log('hello world')
+    //
+    //     return new Promise((resolve, reject) => {
+    //         // 第二次请求代码
+    //         setTimeout(() =>{
+    //             resolve()
+    //         },1000)
+    //     })
+    // }).then(() => {
+    //     // 第二次处理代码
+    //     console.log('hello vuejs');
+    //
+    //     return new Promise((resolve, reject) => {
+    //         // 第三次请求代码
+    //         setTimeout(() => {
+    //             resolve()
+    //         },1000)
+    //     })
+    // }).then(() => {
+    //     // 第三次处理代码
+    //     console.log('hello python');
+    //
+    //     // 第n次。。。
+    //     // return new Promise()
+    // })
+
+    // new => 构造函数(1.保存一些状态信息, 2.执行传入的参数)
+    // 执行传入的回调函数时,会传入两个参数 resolve,reject
+    new Promise((resolve, reject) => {
+        setTimeout(() =>{
+            // resolve 成功时调用
+            // resolve('hello world')
+            // reject 失败是调用
+            reject('error message')
+        },1000)
+    }).then((data) => {
+        // 处理data
+        console.log(data)
+    }).catch((err) => {
+        console.log(err);
+    })
+
+</script>
+</body>
+</html>
